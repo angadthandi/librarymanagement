@@ -23,29 +23,25 @@ https://github.com/OSSpk/Library-Management-System-JAVA
 
 ## ILibrary Interface
  #### Methods:
- - registerMember(String name) memberID
- - unRegisterMember(String memberID)
  - searchCatalog(Book book) ArrayList<Book>
  - checkoutBook(String memberID, Book book) boolean
  - renewBook(String memberID, Book book) boolean
  - reserveBook(String memberID, Book book) boolean
  - returnBook(String memberID, Book book) boolean
- - addBook(String memberID, Book book) boolean
- - removeBook(String memberID, Book book) boolean
 
-## Library Class implements ILibrary
+## Library Class implements ILibrary, IUser
  #### Attributes:
  - instance Library
+ - catalogue ICatalogue
+ - usersList HashMap<String, User> // <memberID, User>
  #### Methods:
- - registerMember(String name) memberID
- - unRegisterMember(String memberID)
  - searchCatalog(Book book) ArrayList<Book>
  - checkoutBook(String memberID, Book book) boolean
  - renewBook(String memberID, Book book) boolean
  - reserveBook(String memberID, Book book) boolean
  - returnBook(String memberID, Book book) boolean
- - addBook(String memberID, Book book) boolean
- - removeBook(String memberID, Book book) boolean
+ - registerMember(String name) memberID
+ - unRegisterMember(String memberID)
  - Library() \
 // constructor - use __Singleton__ Object
 
@@ -66,7 +62,12 @@ https://github.com/OSSpk/Library-Management-System-JAVA
 
 ---
 
-## User Class
+## IUser Interface
+ #### Methods:
+ - registerMember(String name) memberID
+ - unRegisterMember(String memberID)
+
+## User Class implements IUser
  #### Attributes:
  - memberID String
  - name String
@@ -80,13 +81,13 @@ https://github.com/OSSpk/Library-Management-System-JAVA
 ## ICatalogue Interface
  #### Methods:
  - searchCatalog(Book book) ArrayList<Book>
- - addBook(String memberID, Book book) boolean
- - removeBook(String memberID, Book book) boolean
+ - addBook(String memberID, Book book) boolean // ADMIN ONLY
+ - removeBook(String memberID, Book book) boolean // ADMIN ONLY
 
 ## Catalogue Class implements ICatalogue
  #### Attributes:
  - booksList HashMap<String, Book> // <BookTitle, Book>
  #### Methods:
  - searchCatalog(Book book) ArrayList<Book>
- - addBook(String memberID, Book book) boolean
- - removeBook(String memberID, Book book) boolean
+ - addBook(String memberID, Book book) boolean // ADMIN ONLY
+ - removeBook(String memberID, Book book) boolean // ADMIN ONLY
