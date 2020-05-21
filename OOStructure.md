@@ -33,6 +33,7 @@ https://github.com/OSSpk/Library-Management-System-JAVA
  #### Attributes:
  - instance Library
  - catalogue ICatalogue
+ - user IUser
  - usersList HashMap<String, User> // <memberID, User>
  #### Methods:
  - searchCatalog(Book book) ArrayList<Book>
@@ -42,7 +43,7 @@ https://github.com/OSSpk/Library-Management-System-JAVA
  - returnBook(String memberID, Book book) boolean
  - registerMember(String name) memberID
  - unRegisterMember(String memberID)
- - Library() \
+ - Library(ICatalogue, IUser) \
 // constructor - use __Singleton__ Object
 
 ---
