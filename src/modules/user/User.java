@@ -1,9 +1,7 @@
 package modules.user;
 
-public class User {
-    private String memberID;
-    private String name;
-    private UserType userType;
+public class User implements IUser {
+    private UserData userData;
 
     // memberID
     public int registerMember(String name) {
@@ -16,6 +14,10 @@ public class User {
 
     public void unRegisterMember(String memberID) {
 
+    }
+
+    public UserData getUserData() {
+        return userData;
     }
 
 }

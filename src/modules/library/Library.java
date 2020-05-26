@@ -6,6 +6,8 @@ import java.util.HashMap;
 import modules.book.Book;
 import modules.catalogue.ICatalogue;
 import modules.user.IUser;
+import modules.user.UserData;
+import modules.user.UserType;
 
 public class Library implements ILibrary, IUser {
     private Library instance;
@@ -37,27 +39,19 @@ public class Library implements ILibrary, IUser {
     }
 
     public boolean checkoutBook(String memberID, Book book) {
-        boolean ret = false;
-
-        return ret;
+        return book.checkoutBook(getUserByID(memberID), book);
     }
 
     public boolean renewBook(String memberID, Book book) {
-        boolean ret = false;
-
-        return ret;
+        return book.renewBook(memberID, book);
     }
 
     public boolean reserveBook(String memberID, Book book) {
-        boolean ret = false;
-
-        return ret;
+        return book.reserveBook(memberID, book);
     }
 
     public boolean returnBook(String memberID, Book book) {
-        boolean ret = false;
-
-        return ret;
+        return book.returnBook(memberID, book);
     }
 
     // memberID
@@ -67,6 +61,14 @@ public class Library implements ILibrary, IUser {
 
     public void unRegisterMember(String memberID) {
         user.unRegisterMember(memberID);
+    }
+
+    public IUser getUserByID(String memberID) {
+        return usersList.get(memberID);
+    }
+
+    public UserData getUserData() {
+        return user.getUserData();
     }
 
 }
