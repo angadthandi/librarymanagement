@@ -23,43 +23,52 @@ https://github.com/OSSpk/Library-Management-System-JAVA
 
 ## ILibrary Interface
  #### Methods:
- - searchCatalog(Book book) ArrayList<Book>
- - checkoutBook(String memberID, Book book) boolean
- - renewBook(String memberID, Book book) boolean
- - reserveBook(String memberID, Book book) boolean
- - returnBook(String memberID, Book book) boolean
+ - searchCatalog(IBook book) ArrayList<IBook>
+ - totalUsers() int
+ - addUserToList(String memberID, IUser user)
+ - removeUserFromList(String memberID)
 
-## Library Class implements ILibrary, IUser
+## Library Class implements ILibrary
  #### Attributes:
  - instance Library
  - catalogue ICatalogue
- - user IUser
  - usersList HashMap<String, User> // <memberID, User>
  #### Methods:
- - searchCatalog(Book book) ArrayList<Book>
- - checkoutBook(String memberID, Book book) boolean
- - renewBook(String memberID, Book book) boolean
- - reserveBook(String memberID, Book book) boolean
- - returnBook(String memberID, Book book) boolean
- - registerMember(String name) memberID
- - unRegisterMember(String memberID)
- - Library(ICatalogue, IUser) \
+ - searchCatalog(IBook book) ArrayList<IBook>
+ - totalUsers() int
+ - addUserToList(String memberID, IUser user)
+ - removeUserFromList(String memberID)
+ - Library(ICatalogue) \
 // constructor - use __Singleton__ Object
 
 ---
 
-## Book Class
+## IBook Interface
+ #### Methods:
+ - checkoutBook(IUser user, Book book) boolean
+ - renewBook(IUser user, Book book) boolean
+ - reserveBook(IUser user, Book book) boolean
+ - returnBook(IUser user, Book book) boolean
+ - getBookData() BookData
+
+## Book Class implements IBook
+ #### Attributes:
+ - bookData BookData
+ #### Methods:
+ - checkoutBook(IUser user, Book book) boolean
+ - renewBook(IUser user, Book book) boolean
+ - reserveBook(IUser user, Book book) boolean
+ - returnBook(IUser user, Book book) boolean
+ - getBookData() BookData
+
+## BookData Class
  #### Attributes:
  - bookID String
  - title String
  - publisher String
  - publishDate String
  - status BookStatus
- #### Methods:
- - checkoutBook(String memberID, Book book) boolean
- - renewBook(String memberID, Book book) boolean
- - reserveBook(String memberID, Book book) boolean
- - returnBook(String memberID, Book book) boolean
+ - bookReservedByUserID String
 
 ---
 
@@ -67,28 +76,41 @@ https://github.com/OSSpk/Library-Management-System-JAVA
  #### Methods:
  - registerMember(String name) memberID
  - unRegisterMember(String memberID)
+ - getUserData() UserData
 
 ## User Class implements IUser
+ #### Attributes:
+ - userData UserData
+ - userBooksList ArrayList<UserBook>
+ #### Methods:
+ - registerMember(String name) memberID
+ - unRegisterMember(String memberID)
+ - getUserData() UserData
+
+## UserData Class
  #### Attributes:
  - memberID String
  - name String
  - userType UserType
- #### Methods:
- - registerMember(String name) memberID
- - unRegisterMember(String memberID)
+
+## UserBook Class
+ #### Attributes:
+ - memberID String
+ - bookID String
+ - reservationStatus ReservationStatus
 
 ---
 
 ## ICatalogue Interface
  #### Methods:
- - searchCatalog(Book book) ArrayList<Book>
- - addBook(String memberID, Book book) boolean // ADMIN ONLY
- - removeBook(String memberID, Book book) boolean // ADMIN ONLY
+ - searchCatalog(IBook book) ArrayList<IBook>
+ - addBook(String memberID, IBook book) boolean // ADMIN ONLY
+ - removeBook(String memberID, IBook book) boolean // ADMIN ONLY
 
 ## Catalogue Class implements ICatalogue
  #### Attributes:
- - booksList HashMap<String, Book> // <BookTitle, Book>
+ - booksList HashMap<String, IBook> // <BookID, IBook>
  #### Methods:
- - searchCatalog(Book book) ArrayList<Book>
- - addBook(String memberID, Book book) boolean // ADMIN ONLY
- - removeBook(String memberID, Book book) boolean // ADMIN ONLY
+ - searchCatalog(IBook book) ArrayList<IBook>
+ - addBook(String memberID, IBook book) boolean // ADMIN ONLY
+ - removeBook(String memberID, IBook book) boolean // ADMIN ONLY

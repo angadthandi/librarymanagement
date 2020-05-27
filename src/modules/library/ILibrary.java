@@ -2,12 +2,12 @@ package modules.library;
 
 import java.util.ArrayList;
 
-import modules.book.Book;
+import modules.book.IBook;
+import modules.user.IUser;
 
 public interface ILibrary {
-    ArrayList<Book> searchCatalog(Book book);
-    boolean checkoutBook(String memberID, Book book);
-    boolean renewBook(String memberID, Book book);
-    boolean reserveBook(String memberID, Book book);
-    boolean returnBook(String memberID, Book book);
+    ArrayList<IBook> searchCatalog(IBook book);
+    int totalUsers();
+    void addUserToList(String memberID, IUser user);
+    void removeUserFromList(String memberID);
 }
